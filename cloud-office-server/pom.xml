@@ -54,6 +54,12 @@
     </dependency>
 
 
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
+
+
     <!-- swagger2 依赖 -->
     <dependency>
       <groupId>io.springfox</groupId>

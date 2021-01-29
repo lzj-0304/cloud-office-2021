@@ -1,5 +1,6 @@
 package com.lzj.cloud.office.service;
 
+import com.lzj.cloud.office.model.RespBean;
 import com.lzj.cloud.office.pojo.Admin;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,18 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IAdminService extends IService<Admin> {
 
+    /**
+     * 用户登录
+     * @param username
+     * @param password
+     * @return
+     */
+    RespBean login(String username, String password);
+
+    /**
+     * 根据用户名获取用户
+     * @param username
+     * @return
+     */
+    Admin getAdminByUserName(String username);
 }

@@ -15,7 +15,7 @@ import java.util.Map;
  * @author 乐字节--老李
  * @version 1.0
  */
-@RestController
+//@RestController
 public class RestfulController {
     // 测试数据
     private Map<Integer,User> users;

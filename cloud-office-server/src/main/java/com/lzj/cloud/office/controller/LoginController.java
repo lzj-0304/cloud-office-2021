@@ -31,4 +31,25 @@ public class LoginController {
     }
 
 
+    @GetMapping("/admin/info")
+    public Admin getAdminInfo(Principal principal){
+        if (null==principal){
+            return null;
+        }
+        String username = principal.getName();
+        Admin admin = adminService.getAdminByUserName(username);
+        admin.setPassword(null);
+        return admin;
+    }
+
+    /**
+     * 客户端清空用户信息 token串
+     * @return
+     */
+    @PostMapping("/logout")
+    public RespBean logout(){
+        return RespBean.success("注销成功！");
+    }
+
+
 }

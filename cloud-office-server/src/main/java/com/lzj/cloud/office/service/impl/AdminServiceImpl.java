@@ -6,7 +6,15 @@ import com.lzj.cloud.office.pojo.Admin;
 import com.lzj.cloud.office.mapper.AdminMapper;
 import com.lzj.cloud.office.service.IAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.lzj.cloud.office.utils.JwtTokenUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -23,6 +31,17 @@ import java.util.UUID;
  */
 @Service
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService {
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
+    @Value("${jwt.tokenHead}")
+    private String tokenHead;
 
 
     /**
@@ -33,33 +52,27 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      */
     @Override
     public RespBean login(String username, String password) {
-        if(StringUtils.isBlank(username)){
-            return RespBean.error("请输入用户名!");
-        }
-        if(StringUtils.isBlank(password)){
-            return RespBean.error("请输入用户密码!");
-        }
-
-        Admin admin = getAdminByUserName(username);
-        if (null==admin){
+        //登录
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        if (null==userDetails){
             return RespBean.error("用户记录不存在!");
         }
-        /**
-         * 比对密码
-         */
-        if(!(password.equals(admin.getPassword()))){
+        if (!passwordEncoder.matches(password,userDetails.getPassword())){
             return RespBean.error("用户密码错误!");
         }
-
-        if (!admin.getEnabled()){
+        if (!userDetails.isEnabled()){
             return RespBean.error("账号被禁用，请联系管理员！");
         }
-
-        String token =  UUID.randomUUID().toString();
+        //更新security登录用户对象
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails
+                ,null,userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        //生成token
+        String token = jwtTokenUtil.generateToken(userDetails);
         Map<String,String> tokenMap = new HashMap<>();
         tokenMap.put("token",token);
-        tokenMap.put("tokenHead","Authorization");
-       return RespBean.success("用户登录成功",tokenMap);
+        tokenMap.put("tokenHead",tokenHead);
+        return RespBean.success("登录成功",tokenMap);
 
     }
 

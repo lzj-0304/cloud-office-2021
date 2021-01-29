@@ -52,7 +52,12 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      */
     @Override
     public RespBean login(String username, String password) {
-        //登录
+        if(StringUtils.isBlank(username)){
+            return RespBean.error("请输入用户名!");
+        }
+        if(StringUtils.isBlank(password)){
+            return RespBean.error("请输入用户密码!");
+        }
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         if (null==userDetails){
             return RespBean.error("用户记录不存在!");

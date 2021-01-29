@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>cloud-office-server</module>
+        <module>cloud-office-code-com.lzj.generator</module>
     </modules>
 
 

@@ -18,6 +18,8 @@ public class RespBean {
 	private String message;
 	private Object obj;
 
+
+
 	/**
 	 * 成功返回结果
 	 * @param message
@@ -26,6 +28,7 @@ public class RespBean {
 	public static RespBean success(String message){
 		return new RespBean(200,message,null);
 	}
+
 
 	/**
 	 * 成功返回结果

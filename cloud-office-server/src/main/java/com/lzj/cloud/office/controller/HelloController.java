@@ -1,5 +1,6 @@
 package com.lzj.cloud.office.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version 1.0
  */
 @RestController
+@Api(tags = "环境测试")
 public class HelloController {
 
     @GetMapping("/hello")

@@ -38,6 +38,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private RestAuthorizationEntryPoint restAuthorizationEntryPoint;
 
 
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers(
+				"/login",
+				"/logout",
+				"/css/**",
+				"/js/**",
+				"/index.html",
+				"favicon.ico",
+				"/doc.html",
+				"/webjars/**",
+				"/swagger-resources/**",
+				"/v2/api-docs/**"
+		);
+	}
+
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -49,7 +65,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 				.authorizeRequests()
-				.antMatchers("/login").permitAll()
 				// 其他请求必须认证
 				.anyRequest().authenticated()
 				.and()

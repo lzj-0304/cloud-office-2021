@@ -19,8 +19,8 @@ import javax.annotation.Resource;
  * @author 老李
  * @since 2021-01-29
  */
-@RestController
-@RequestMapping("/admin")
+/*@RestController
+@RequestMapping("/admin")*/
 public class AdminController {
 
     @Resource

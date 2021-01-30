@@ -1,11 +1,8 @@
 package com.lzj.cloud.office.pojo;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
-import java.util.Collection;
-
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -14,13 +11,16 @@ import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
+import java.util.Collection;
+
 /**
  * <p>
  * 
  * </p>
  *
  * @author 老李
- * @since 2021-01-29
+ * @since 2021-01-26
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -61,6 +61,7 @@ public class Admin implements UserDetails,Serializable {
 
     @ApiModelProperty(value = "备注")
     private String remark;
+
 
 
     @Override

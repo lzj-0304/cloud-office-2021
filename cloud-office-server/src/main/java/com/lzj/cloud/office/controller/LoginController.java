@@ -21,16 +21,18 @@ import java.security.Principal;
  * @version 1.0
  */
 @RestController
+@Api(tags = "用户登录")
 public class LoginController {
     @Autowired
     private IAdminService adminService;
 
+    @ApiOperation(value = "用户登录")
     @PostMapping("/login")
     public RespBean login(@RequestBody AdminLoginParam adminLoginParam){
         return adminService.login(adminLoginParam.getUsername(),adminLoginParam.getPassword());
     }
 
-
+    @ApiOperation(value = "获取登录用户信息")
     @GetMapping("/admin/info")
     public Admin getAdminInfo(Principal principal){
         if (null==principal){
@@ -46,10 +48,10 @@ public class LoginController {
      * 客户端清空用户信息 token串
      * @return
      */
+    @ApiOperation(value = "退出登录")
     @PostMapping("/logout")
     public RespBean logout(){
         return RespBean.success("注销成功！");
     }
-
 
 }

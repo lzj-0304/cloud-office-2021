@@ -25,5 +25,5 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
                                       @Param("beginDateScope") LocalDate[] beginDateScope);
 
 
-    List<Employee> getEmployees();
+    List<Employee> getEmployee(Integer id);
 }

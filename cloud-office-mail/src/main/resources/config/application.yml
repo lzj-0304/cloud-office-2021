@@ -1,7 +1,6 @@
 server:
   # 端口
-  port: 8081
-
+  port: 8082
 spring:
   # 数据源配置
   datasource:
@@ -63,29 +62,12 @@ spring:
     publisher-confirm-type: correlated
     #消息失败回调
     publisher-returns: true
-
-# Mybatis-plus配置
-mybatis-plus:
-  #配置Mapper映射文件
-  mapper-locations: classpath*:/mapper/*Mapper.xml
-  # 配置MyBatis数据返回类型别名（默认别名是类名）
-  type-aliases-package: com.lzj.cloud.office.pojo
-  configuration:
-    # 自动驼峰命名
-    map-underscore-to-camel-case: false
-
-## Mybatis SQL 打印(方法接口所在的包，不是Mapper.xml所在的包)
-logging:
-  level:
-    com.lzj.cloud.office.mapper: debug
-
-
-jwt:
-  # JWT存储的请求头
-  tokenHeader: Authorization
-  # JWT 加解密使用的密钥
-  secret: yeb-secret
-  # JWT的超期限时间（60*60*24）
-  expiration: 604800
-  # JWT 负载中拿到开头
-  tokenHead: Bearer
+  ## 邮件
+  mail:
+    username: lzj_20190304@163.com
+    password: YCQOTYPXBACJPSPL
+    host: smtp.163.com
+    protocol: smtp
+    port: 25
+    ## 发送方
+    from: lzj_20190304@163.com

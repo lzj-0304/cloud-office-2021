@@ -120,7 +120,7 @@ public class EmployeeController {
     @ApiOperation(value = "导出员工数据")
     @GetMapping(value = "/export",produces = "application/octet-stream")
     public void exportEmployee(HttpServletResponse response) {
-        List<Employee> list = employeeService.getEmployees();
+        List<Employee> list = employeeService.getEmployee(null);
         ExportParams params = new ExportParams("员工表", "员工表", ExcelType.HSSF);
         Workbook workbook = ExcelExportUtil.exportExcel(params, Employee.class, list);
         ServletOutputStream out = null;

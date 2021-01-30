@@ -3,6 +3,7 @@ package com.lzj.cloud.office;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * 乐字节  踏实教育 用心服务
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @MapperScan("com.lzj.cloud.office.mapper")
+@EnableScheduling
 public class CloudOfficeApplication {
 
     public static void main(String[] args) {

@@ -11,6 +11,7 @@
     <modules>
         <module>cloud-office-server</module>
         <module>cloud-office-code-generator</module>
+        <module>cloud-office-mail</module>
     </modules>
 
 

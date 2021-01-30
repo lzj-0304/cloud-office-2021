@@ -115,7 +115,7 @@
         ORDER BY
         e.id
     </select>
-    <select id="getEmployees" resultMap="EmployeeInfo">
+    <select id="getEmployee" resultMap="EmployeeInfo">
         SELECT
             e.*,
             n.id AS nid,
@@ -141,6 +141,9 @@
             AND e.departmentId = d.id
             AND e.jobLevelId = j.id
             AND e.posId = pos.id
+        <if test="null!=id">
+            AND e.id = #{id}
+        </if>
         ORDER BY
         e.id
     </select>

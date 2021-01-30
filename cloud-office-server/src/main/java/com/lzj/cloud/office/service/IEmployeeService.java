@@ -21,7 +21,7 @@ public interface IEmployeeService extends IService<Employee> {
     RespPageBean getEmployeeByPage(Integer currentPage, Integer size, Employee employee, LocalDate[] beginDateScope);
 
 
-    List<Employee> getEmployees();
+    List<Employee> getEmployee(Integer id);
 
     RespBean addEmp(Employee employee);
 }

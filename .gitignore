@@ -5,3 +5,5 @@ cloud-office-2021.iml
 /cloud-office-code-generator/cloud-office-code-generator.iml
 /cloud-office-code-generator/target
 /cloud-office-server/target
+/cloud-office-mail/target
+/cloud-office-mail/cloud-office-mail.iml
